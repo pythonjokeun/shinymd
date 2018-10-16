@@ -6,6 +6,6 @@ Create Bootstrap 4 Material Design dashboard with Shiny. Based on https://www.cr
 
 ## Installation
 
-```
+```r
 devtools::install_github('pythonjokeun/shinymd')
 ```
