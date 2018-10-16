@@ -1,0 +1,16 @@
+Package: shinymd
+Type: Package
+Title: Create Bootstrap 4 Material Design Dashboards
+Version: 0.1.0
+Authors@R: c(
+    person('Hariadi', 'Ichsan', email = 'ichsan.hariadi@yahoo.com', role = c('aut', 'cre')),
+    person('Firlana', 'Ikhlas', email = 'ifirlana@gmail.com', role = c('ctb')),
+    person(family = 'Creative Tim', role = c('ctb', 'cph'), comment = 'Bootstrap 4 Material Design Admin'))
+Maintainer: Ichsan Hariadi <ichsan.hariadi@yahoo.com>
+Description: Create Material Bootstrap Dashboards with a fresh, new design inspired by Google's Material Design.
+    See <https://github.com/creativetimofficial/material-dashboard> for more info.
+License: GPL-2
+Imports: shiny, htmltools
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
