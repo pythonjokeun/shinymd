@@ -13,8 +13,8 @@ devtools::install_github('pythonjokeun/shinymd')
 ## Example usage
 
 ```r
+require(shiny)
 require(shinymd)
-require(highcharter)
 
 ui = md_page(
   header = md_header(
@@ -45,13 +45,13 @@ ui = md_page(
     md_tab_items(
       md_tab_item(
         tab_name = 'sidebar_tab_1',
-        fluidRow(
+        md_row(
           md_info_box_output('card_stats_1', width = 3),
           md_info_box_output('card_stats_2', width = 3),
           md_info_box_output('card_stats_3', width = 3),
           md_info_box_output('card_stats_4', width = 3)
         ),
-        fluidRow(
+        md_row(
           md_chart_box(
             width = 6,
             status = 'success',
@@ -61,7 +61,7 @@ ui = md_page(
               text = 'Chart box 1 footer',
               icon = md_icon('access_time')
             ),
-            highchartOutput('chart_1', height = '250px')
+            highcharter::highchartOutput('chart_1', height = '250px')
           )
         )
       ),
@@ -100,30 +100,30 @@ server = function(input, output, session) {
       'Notification 1.2',
       'Notification 1.3'
     )
-
+    
     items = lapply(notif, function(x) {
       md_dropdown_menu_item(x)
     })
-
+    
     md_dropdown_menu(
       icon = md_icon('notifications'),
       items
     )
   })
-
+  
   output$notification_2_menu = md_render_dropdown_menu({
     notif = list()
-
+    
     items = lapply(notif, function(x) {
       md_message_item(x)
     })
-
+    
     md_dropdown_menu(
       icon = md_icon('shopping_cart'),
       items
     )
   })
-
+  
   output$card_stats_1 = md_render_info_box({
     md_info_box(
       100,
@@ -136,7 +136,7 @@ server = function(input, output, session) {
       )
     )
   })
-
+  
   output$card_stats_2 = md_render_info_box({
     md_info_box(
       200,
@@ -149,7 +149,7 @@ server = function(input, output, session) {
       )
     )
   })
-
+  
   output$card_stats_3 = md_render_info_box({
     md_info_box(
       300,
@@ -162,7 +162,7 @@ server = function(input, output, session) {
       )
     )
   })
-
+  
   output$card_stats_4 = md_render_info_box({
     md_info_box(
       300,
@@ -175,10 +175,14 @@ server = function(input, output, session) {
       )
     )
   })
-
-  output$chart_1 = renderHighchart({
-    chart = hchart(ggplot2::diamonds$cut, colorByPoint = TRUE, name = 'Cut')
-    chart = hc_add_theme(chart, hc_theme_google())
+  
+  output$chart_1 = highcharter::renderHighchart({
+    chart = highcharter::hchart(
+      ggplot2::diamonds$cut, 
+      colorByPoint = TRUE, 
+      name = 'Cut'
+    )
+    chart = highcharter::hc_add_theme(chart, highcharter::hc_theme_google())
     chart
   })
 }
